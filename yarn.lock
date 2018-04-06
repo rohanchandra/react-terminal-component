@@ -4808,9 +4808,9 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-javascript-terminal@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/javascript-terminal/-/javascript-terminal-1.0.1.tgz#7de681599d05effa58e47ed0448cb7d56d6aee3e"
+javascript-terminal@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/javascript-terminal/-/javascript-terminal-1.0.2.tgz#e4739396438d663f3401b0a667c4b0231fd16fe5"
   dependencies:
     get-options "^1.1.1"
     immutable "^4.0.0-rc.9"
