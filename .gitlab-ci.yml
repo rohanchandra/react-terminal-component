@@ -1,0 +1,44 @@
+image: node:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - yarn install
+
+# Build stage
+build:
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - lib/
+
+# Test stage
+test:
+  script:
+    - yarn build
+    - yarn test:coverage
+  artifacts:
+    paths:
+      - coverage/
+
+# Deploy stage
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    # Test coverage
+    - yarn run artifact:test-coverage
+    - mv coverage/ public/coverage
+    # React Storybook
+    - yarn run artifact:storybook
+    - mv .storybook_output/ public/storybook
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - master

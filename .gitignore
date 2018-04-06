@@ -1,0 +1,7 @@
+lib
+node_modules
+coverage
+.storybook_output
+.nyc_output
+*.log
+docs
