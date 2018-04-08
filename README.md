@@ -3,6 +3,8 @@
 
 [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/)
 
+![screenshot](https://user-images.githubusercontent.com/816965/38465790-8d461534-3b63-11e8-850c-c3cd76ef5048.gif)
+
 React Terminal Component is a customizable React component backed by a [JavaScript terminal emulator](https://github.com/rohanchandra/javascript-terminal).
 
 Some of cool features of this React component are:
