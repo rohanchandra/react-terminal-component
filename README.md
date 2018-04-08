@@ -42,6 +42,81 @@ class App extends Component {
 }
 ```
 
+### Props
+
+#### emulatorState
+
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.js)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal - Emulator State)
+
+Emulator state, created using the JavaScript terminal library. The emulator state contains:
+
+* file system
+* command mapping
+* history
+* command outputs
+* environment variables
+
+The `emulatorState` prop allows you to provide a custom emulator state.
+
+See the [terminal library documentation](https://github.com/rohanchandra/javascript-terminal#emulator-state) for information on creating emulator state, or view the [code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.js) to get started.
+
+#### theme
+
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_themes.js)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal - Themes)
+
+The `theme` prop accepts an object from `ReactThemes`. The themes current available are:
+
+* `ReactThemes.magpie`
+* `ReactThemes.ember`
+* `ReactThemes.dye`
+* `ReactThemes.forest`
+* `ReactThemes.hacker`
+* `ReactThemes.sea`
+* `ReactThemes.light`
+
+To import `ReactThemes` use the following code:
+
+```
+import { ReactThemes } from 'react-terminal-component';
+```
+
+Alternatively, you can specify your own theme using an object like this:
+
+```
+<ReactTerminal theme={{
+  background: '#141313',
+  promptSymbolColor: '#6effe6',
+  commandColor: '#fcfcfc',
+  outputColor: '#fcfcfc',
+  errorOutputColor: '#ff89bd',
+  fontSize: '1.1rem',
+  spacing: '1%',
+  fontFamily: 'monospace'
+}}/>
+```
+
+#### promptSymbol
+
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_prompt.js)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal - Prompt symbol)
+
+The `promptSymbol` prop accepts a string to be displayed in command headers and the input field.
+
+#### outputRenderers
+
+* [Code example](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_output.js)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal - OutputRenderer)
+
+The `outputRenderers` prop allows you to create new ways of displaying terminal output. See the [code example](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_output.js), which creates a new type of output (output with a white background).
+
+The default renderers are accessible in `ReactOutputRenderers`.
+
+```
+import { ReactOutputRenderers } from 'react-terminal-component';
+```
+
 ## Building
 
 ### Set-up
