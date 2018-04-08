@@ -51,17 +51,17 @@ class App extends Component {
 * [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.js)
 * [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal%20-%20Emulator%20State)
 
-Emulator state, created using the JavaScript terminal library. The emulator state contains:
+Emulator state is created using the [JavaScript terminal emulator library](https://github.com/rohanchandra/javascript-terminal) and contains:
 
-* file system
-* command mapping
-* history
-* command outputs
+* the file system,
+* command mapping,
+* history,
+* command outputs, and
 * environment variables
 
 The `emulatorState` prop allows you to provide a custom emulator state.
 
-See the [terminal library documentation](https://github.com/rohanchandra/javascript-terminal#emulator-state) for information on creating emulator state, or view the [code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.js) to get started.
+See the [library documentation](https://github.com/rohanchandra/javascript-terminal#emulator-state) for information on creating the emulator state, or view the [code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.js) to get started.
 
 #### theme
 
@@ -84,7 +84,7 @@ To import `ReactThemes` use the following code:
 import { ReactThemes } from 'react-terminal-component';
 ```
 
-Alternatively, you can specify your own theme using an object like this:
+Alternatively, you can specify your own theme with an object like this:
 
 ```
 <ReactTerminal theme={{
