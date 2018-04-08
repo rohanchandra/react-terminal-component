@@ -148,6 +148,15 @@ yarn install
 * `yarn artifact:coverage-report` - creates HTML test coverage report in `.nyc_output`
 * `yarn artifact:storybook` - emulator demos
 
+## Potential uses
+
+Some ideas for using React Terminal Component in your next project:
+
+* **Games**: Create a command-line based game, playable in the browser
+* **Education**: Teach popular *NIX commands sandboxed in the browser (no important files accidentally removed with `rm -r`!)
+* **Personal website**: Make your personal website or web resume a command-line interface
+* **Demos**: Create mock commands in JavaScript for your CLI app, and let users try out commands in their browser with simulated output
+
 ## License
 
 Copyright 2018 Rohan Chandra
