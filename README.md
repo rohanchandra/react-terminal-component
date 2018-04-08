@@ -47,7 +47,7 @@ class App extends Component {
 #### emulatorState
 
 * [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.js)
-* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal - Emulator State)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal%20-%20Emulator%20State)
 
 Emulator state, created using the JavaScript terminal library. The emulator state contains:
 
@@ -64,7 +64,7 @@ See the [terminal library documentation](https://github.com/rohanchandra/javascr
 #### theme
 
 * [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_themes.js)
-* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal - Themes)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal%20-%20Themes)
 
 The `theme` prop accepts an object from `ReactThemes`. The themes current available are:
 
@@ -100,14 +100,14 @@ Alternatively, you can specify your own theme using an object like this:
 #### promptSymbol
 
 * [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_prompt.js)
-* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal - Prompt symbol)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal%20-%20Prompt%20symbol)
 
 The `promptSymbol` prop accepts a string to be displayed in command headers and the input field.
 
 #### outputRenderers
 
 * [Code example](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_output.js)
-* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal - OutputRenderer)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal%20-%20OutputRenderer)
 
 The `outputRenderers` prop allows you to create new ways of displaying terminal output. See the [code example](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_output.js), which creates a new type of output (output with a white background).
 
