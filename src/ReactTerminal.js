@@ -97,12 +97,13 @@ class Terminal extends Component {
   }
 
   render() {
-    const { theme, promptSymbol, outputRenderers } = this.props;
+    const { theme, promptSymbol, outputRenderers, terminalId } = this.props;
 
     return (
       <ThemeProvider theme={theme}>
         <TerminalContainer className={'terminalContainer'}>
           <OutputList
+            terminalId={terminalId}
             promptSymbol={promptSymbol}
             outputRenderers={outputRenderers}
             outputs={this.state.emulatorState.getOutputs()} />
@@ -122,6 +123,7 @@ class Terminal extends Component {
 };
 
 Terminal.propTypes = {
+  terminalId: PropTypes.number,
   theme: PropTypes.object,
   promptSymbol: PropTypes.string,
   outputRenderers: PropTypes.object,
@@ -133,7 +135,8 @@ Terminal.defaultProps = {
   theme: defaultTheme,
   promptSymbol: '$',
   outputRenderers: defaultRenderers,
-  inputStr: ''
+  inputStr: '',
+  terminalId: 'terminal01'
 };
 
 export default Terminal;

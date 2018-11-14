@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-let uniqueKey = 0; // unique number for an output given an instance of emulator
-
-const OutputList = ({ outputRenderers, outputs, ...outputRendererProps }) => (
+const OutputList = ({ outputRenderers, outputs, terminalId, ...outputRendererProps }) => (
   <div className={'terminalOutput'}>
-    {outputs.map(output => {
+    {outputs.map((output, index) => {
       const type = output.get('type');
       const content = output.get('content');
 
@@ -17,7 +15,7 @@ const OutputList = ({ outputRenderers, outputs, ...outputRendererProps }) => (
 
       return (
         <OutputComponent
-          key={uniqueKey++}
+          key={`${terminalId}-${index}`}
           {...outputRendererProps}
           content={content}/>
       );
@@ -27,7 +25,8 @@ const OutputList = ({ outputRenderers, outputs, ...outputRendererProps }) => (
 
 OutputList.propTypes = {
   outputRenderers: PropTypes.object.isRequired,
-  outputs: PropTypes.object.isRequired
+  outputs: PropTypes.object.isRequired,
+  terminalId: PropTypes.number,
 };
 
 export default OutputList;
