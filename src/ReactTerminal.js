@@ -123,7 +123,7 @@ class Terminal extends Component {
 };
 
 Terminal.propTypes = {
-  terminalId: PropTypes.number,
+  terminalId: PropTypes.string,
   theme: PropTypes.object,
   promptSymbol: PropTypes.string,
   outputRenderers: PropTypes.object,
