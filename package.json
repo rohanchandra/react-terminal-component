@@ -1,6 +1,6 @@
 {
   "name": "react-terminal-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React component that renders a terminal emulator",
   "main": "lib/react-terminal-component.js",
   "scripts": {
