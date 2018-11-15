@@ -26,7 +26,7 @@ const OutputList = ({ outputRenderers, outputs, terminalId, ...outputRendererPro
 OutputList.propTypes = {
   outputRenderers: PropTypes.object.isRequired,
   outputs: PropTypes.object.isRequired,
-  terminalId: PropTypes.number,
+  terminalId: PropTypes.string,
 };
 
 export default OutputList;
