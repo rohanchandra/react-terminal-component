@@ -121,6 +121,40 @@ The default renderers are accessible in `ReactOutputRenderers`.
 import { ReactOutputRenderers } from 'react-terminal-component';
 ```
 
+### Managing state externally
+
+The `ReactTerminal` component allows the initial values of `emulatorState` and `inputStr` to be specified, but thereafter the component handles the state internally. In some cases you may need to manage the state externally from the `react-terminal-component` module. 
+
+You can use `ReactTerminalStateless` to control the state of `emulatorState` and `inputStr`, but you must also supply the `onInputChange` and `onStateChange` props.
+
+This is a simple component which handles the terminal state. You could adapt this idea to make the state be handled by Redux and to modify the state asynchronously, not in direct response to a command within the terminal.
+
+```javascript
+import React, { Component } from 'react';
+import {ReactTerminalStateless} from 'react-terminal-component';
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      emulatorState: EmulatorState.createEmpty(),
+      inputStr: 'initial value'
+    };
+  }
+
+  render() {
+    return (
+      <ReactTerminalStateless
+        emulatorState={this.state.emulatorState}
+        inputStr={this.state.inputStr}
+        onInputChange={(inputStr) => this.setState({inputStr})}
+        onStateChange={(emulatorState) => this.setState({emulatorState})}
+      />
+    );
+  }
+}
+```
+
 ## Building
 
 ### Set-up
