@@ -3,6 +3,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import ReactTerminal from 'ReactTerminal';
+import ReactTerminalStateless from 'ReactTerminalStateless';
 
 describe('ReactTerminal', () => {
   configure({
@@ -15,9 +16,9 @@ describe('ReactTerminal', () => {
     chai.assert.isDefined(container);
   });
 
-  it('should have .terminalContainer CSS class', () => {
+  it('should have ReactTerminalStateless component', () => {
     const container = shallow(<ReactTerminal/>);
 
-    chai.expect(container.find('.terminalContainer').length).to.equal(1);
+    chai.expect(container.find(ReactTerminalStateless).length).to.equal(1);
   });
 });

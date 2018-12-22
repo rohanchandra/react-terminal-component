@@ -6,6 +6,7 @@ function loadStories() {
   require('../stories/ReactTerminal_prompt.js');
   require('../stories/ReactTerminal_themes.js');
   require('../stories/ReactTerminal_output.js');
+  require('../stories/ReactTerminalStateless.js');
 }
 
 configure(loadStories, module);

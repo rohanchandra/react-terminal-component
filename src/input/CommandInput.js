@@ -23,12 +23,14 @@ class CommandInput extends Component {
           }}>
           <PromptSymbol>{promptSymbol}</PromptSymbol>
           <StyledInput
+            autoFocus
             onChange={e => {
               e.persist();
               onChange(e);
             }}
             value={value}
-            innerRef={inputRef => (this.input = inputRef)}/>
+            innerRef={inputRef => (this.input = inputRef)}
+          />
         </StyledForm>
       </div>
     );

@@ -1,33 +1,45 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from 'styled-components';
-import {
-  Emulator, HistoryKeyboardPlugin, EmulatorState
-} from 'javascript-terminal';
+import ReactTerminalStateless from 'ReactTerminalStateless';
+import {EmulatorState} from 'javascript-terminal';
 import defaultTheme from 'themes/default';
-import CommandInput from 'input/CommandInput';
-import OutputList from 'OutputList';
-import TerminalContainer from 'TerminalContainer';
 import defaultRenderers from 'output';
 
 class Terminal extends Component {
   constructor({emulatorState, inputStr}) {
     super();
 
-    this.emulator = new Emulator();
-    this.historyKeyboardPlugin = new HistoryKeyboardPlugin(emulatorState);
-    this.plugins = [this.historyKeyboardPlugin];
     this.state = {
       emulatorState,
       inputStr
     };
-
     this.onInputChange = this.onInputChange.bind(this);
-    this.onInputSubmit = this.onInputSubmit.bind(this);
-    this.onInputKeyDownEvent = this.onInputKeyDownEvent.bind(this);
+    this.onStateChange = this.onStateChange.bind(this);
+  }
+
+  _init(props) {
+    const {emulatorState, inputStr} = props;
+
+    this.setState({
+      emulatorState,
+      inputStr
+    });
+  }
+
+  componentDidMount() {
+    this._init(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps) {
+      this._init(nextProps);
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    if (!this.state || !this.state.emulatorState || !nextState || !nextState.emulatorState) {
+      return true;
+    }
     const isOutputEqual = this.state.emulatorState.getOutputs() ===
       nextState.emulatorState.getOutputs();
     const isInputStrEqual = this.state.inputStr === nextState.inputStr;
@@ -35,94 +47,37 @@ class Terminal extends Component {
     return !isOutputEqual || !isInputStrEqual;
   }
 
-  componentDidUpdate() {
-    if (this.inputRef) {
-      this.inputRef.scrollIntoView();
-    }
+  onInputChange(inputStr) {
+    this.setState({inputStr});
   }
 
-  onInputSubmit(commandStr) {
-    const newState = this.emulator.execute(
-      this.state.emulatorState, commandStr, this.plugins
-    );
-
-    this.setState(({emulatorState, ...rest}) => ({
-      ...rest,
-      inputStr: '',
-      emulatorState: newState
-    }));
-  }
-
-  onInputChange(e) {
-    this.setState(({inputStr, ...rest}) => ({
-      ...rest,
-      inputStr: e.target.value
-    }));
-  }
-
-  onInputKeyDownEvent(e) {
-    switch (e.key) {
-      case 'ArrowUp':
-        e.preventDefault();
-
-        this.setState(({inputStr, ...rest}) => ({
-          ...rest,
-          inputStr: this.historyKeyboardPlugin.completeUp()
-        }));
-
-        break;
-      case 'ArrowDown':
-        e.preventDefault();
-
-        this.setState(({inputStr, ...rest}) => ({
-          ...rest,
-          inputStr: this.historyKeyboardPlugin.completeDown()
-        }));
-
-        break;
-      case 'Tab':
-        e.preventDefault();
-
-        const autoCompletedStr = this.emulator.autocomplete(
-          this.state.emulatorState, this.state.inputStr
-        );
-
-        this.setState(({inputStr, ...rest}) => ({
-          ...rest,
-          inputStr: autoCompletedStr
-        }));
-
-        break;
-    }
+  onStateChange(emulatorState) {
+    this.setState({emulatorState, inputStr: ''});
   }
 
   render() {
-    const { theme, promptSymbol, outputRenderers, terminalId } = this.props;
+    const {acceptInput, theme, promptSymbol, outputRenderers, terminalId} = this.props;
+    const {emulatorState, inputStr} = this.state;
 
     return (
-      <ThemeProvider theme={theme}>
-        <TerminalContainer className={'terminalContainer'}>
-          <OutputList
-            terminalId={terminalId}
-            promptSymbol={promptSymbol}
-            outputRenderers={outputRenderers}
-            outputs={this.state.emulatorState.getOutputs()} />
-
-          <CommandInput
-            ref={inputRef => { this.inputRef = inputRef; }}
-            promptSymbol={promptSymbol}
-            value={this.state.inputStr}
-            onSubmit={this.onInputSubmit}
-            onKeyDown={this.onInputKeyDownEvent}
-            onChange={this.onInputChange}
-          />
-        </TerminalContainer>
-      </ThemeProvider>
+      <ReactTerminalStateless
+        acceptInput={acceptInput}
+        emulatorState={emulatorState}
+        inputStr={inputStr}
+        onInputChange={this.onInputChange}
+        onStateChange={this.onStateChange}
+        outputRenderers={outputRenderers}
+        promptSymbol={promptSymbol}
+        terminalId={terminalId}
+        theme={theme}
+      />
     );
   }
 };
 
 Terminal.propTypes = {
+  acceptInput: PropTypes.bool,
+  inputStr: PropTypes.string,
   terminalId: PropTypes.string,
   theme: PropTypes.object,
   promptSymbol: PropTypes.string,
@@ -131,6 +86,7 @@ Terminal.propTypes = {
 };
 
 Terminal.defaultProps = {
+  acceptInput: true,
   emulatorState: EmulatorState.createEmpty(),
   theme: defaultTheme,
   promptSymbol: '$',
