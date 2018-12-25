@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   Emulator, HistoryKeyboardPlugin, EmulatorState
@@ -18,6 +18,8 @@ class TerminalStateless extends Component {
     this.historyKeyboardPlugin = new HistoryKeyboardPlugin(emulatorState);
     this.plugins = [this.historyKeyboardPlugin];
     this.inputRef = null;
+    this.dragStart = {};
+    this.dragging = false;
   }
 
   shouldComponentUpdate(nextProps) {
@@ -37,7 +39,7 @@ class TerminalStateless extends Component {
     }
   }
 
-  _submitInput(commandStr) {
+  _submitInput = (commandStr) => {
     const {onStateChange, emulatorState} = this.props;
     const newState = this.emulator.execute(
       emulatorState, commandStr, this.plugins
@@ -52,7 +54,7 @@ class TerminalStateless extends Component {
     onInputChange(inputStr);
   }
 
-  _onInputKeyDownEvent(e) {
+  _onInputKeyDownEvent = (e) => {
     switch (e.key) {
       case 'ArrowUp':
         e.preventDefault();
@@ -76,12 +78,47 @@ class TerminalStateless extends Component {
     }
   }
 
+  _onClick = () => {
+    if (this.inputRef && !this.dragging) {
+      this.inputRef.scrollIntoView();
+      this.inputRef.focus();
+    }
+  };
+
+  _onMouseDown = (e) => {
+    this.dragging = false;
+    this.dragStart = {
+      x: e.screenX,
+      y: e.screenY
+    };
+  }
+
+  _onMouseUp = (e) => {
+    if (this.dragStart.x === e.screenX && this.dragStart.y === e.screenY) {
+      this.dragging = false;
+    } else {
+      // For the next 100ms consider any click event to be part of this drag.
+      this.dragging = true;
+      setTimeout(() => { this.isDragging = false; }, 100, this);
+    }
+  }
+
   render() {
-    const {acceptInput, emulatorState, inputStr, theme, promptSymbol, outputRenderers, terminalId} = this.props;
-    let inputControl;
+    const {
+      acceptInput, clickToFocus, emulatorState, inputStr, theme, promptSymbol, outputRenderers, terminalId
+    } = this.props;
+    let inputControl, focusProps;
 
     if (!emulatorState) {
       return null;
+    }
+
+    if (clickToFocus) {
+      focusProps = {
+        onClick: this._onClick,
+        onMouseDown: this._onMouseDown,
+        onMouseUp: this._onMouseUp
+      };
     }
 
     if (acceptInput) {
@@ -90,8 +127,8 @@ class TerminalStateless extends Component {
           ref={(ref) => { this.inputRef = ref; }}
           promptSymbol={promptSymbol}
           value={inputStr}
-          onSubmit={(cmd) => this._submitInput(cmd)}
-          onKeyDown={(e) => this._onInputKeyDownEvent(e)}
+          onSubmit={this._submitInput}
+          onKeyDown={this._onInputKeyDownEvent}
           onChange={(e) => this._setInput(e.target.value)}
         />
       );
@@ -99,13 +136,16 @@ class TerminalStateless extends Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <TerminalContainer className={'terminalContainer'}>
+        <TerminalContainer
+          className={'terminalContainer'}
+          {...focusProps}
+        >
           <OutputList
             terminalId={terminalId}
             promptSymbol={promptSymbol}
             outputRenderers={outputRenderers}
-            outputs={emulatorState.getOutputs()} />
-
+            outputs={emulatorState.getOutputs()}
+          />
           {inputControl}
         </TerminalContainer>
       </ThemeProvider>
@@ -115,24 +155,26 @@ class TerminalStateless extends Component {
 
 TerminalStateless.propTypes = {
   acceptInput: PropTypes.bool,
-  inputStr: PropTypes.string.isRequired,
-  terminalId: PropTypes.string,
-  theme: PropTypes.object,
-  promptSymbol: PropTypes.string,
-  outputRenderers: PropTypes.object,
+  clickToFocus: PropTypes.bool,
   emulatorState: PropTypes.object.isRequired,
+  inputStr: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
-  onStateChange: PropTypes.func.isRequired
+  onStateChange: PropTypes.func.isRequired,
+  outputRenderers: PropTypes.object,
+  promptSymbol: PropTypes.string,
+  terminalId: PropTypes.string,
+  theme: PropTypes.object
 };
 
 TerminalStateless.defaultProps = {
   acceptInput: true,
+  clickToFocus: false,
   emulatorState: EmulatorState.createEmpty(),
-  theme: defaultTheme,
-  promptSymbol: '$',
-  outputRenderers: defaultRenderers,
   inputStr: '',
-  terminalId: 'terminal01'
+  outputRenderers: defaultRenderers,
+  promptSymbol: '$',
+  terminalId: 'terminal01',
+  theme: defaultTheme
 };
 
 export default TerminalStateless;
