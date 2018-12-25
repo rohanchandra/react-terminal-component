@@ -121,11 +121,27 @@ The default renderers are accessible in `ReactOutputRenderers`.
 import { ReactOutputRenderers } from 'react-terminal-component';
 ```
 
+#### acceptInput
+
+The `acceptInput` prop is a boolean value, defaulting to true. When disabled, the input field is removed. This may be useful in conjunction with `ReactTerminalStateless` if you're managing state externally and simulating long-running commands.
+
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal.js)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal&selectedStory=with%20acceptInput%3Dfalse)
+
+#### clickToFocus
+
+The `clickToFocus` prop is a boolean value, defaulting to false. When enabled, clicking anywhere within the terminal will shift focus to the input field.
+
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal.js)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal&selectedStory=with%20clickToFocus)
+
 ### Managing state externally
 
 The `ReactTerminal` component allows the initial values of `emulatorState` and `inputStr` to be specified, but thereafter the component handles the state internally. In some cases you may need to manage the state externally from the `react-terminal-component` module. 
 
 You can use `ReactTerminalStateless` to control the state of `emulatorState` and `inputStr`, but you must also supply the `onInputChange` and `onStateChange` props.
+
+All of the props documented above apply to both `ReactTerminal` and `ReactTerminalStateless`.
 
 This is a simple component which handles the terminal state. You could adapt this idea to make the state be handled by Redux and to modify the state asynchronously, not in direct response to a command within the terminal.
 

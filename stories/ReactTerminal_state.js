@@ -25,14 +25,14 @@ storiesOf('ReactTerminal - Emulator State', module)
         emulatorState={customState}/>
     );
   })
-  .add('with exisiting outputs', () => {
+  .add('with existing outputs', () => {
     const defaultState = EmulatorState.createEmpty();
     const defaultOutputs = defaultState.getOutputs();
 
     const newOutputs = Outputs.addRecord(
       defaultOutputs, OutputFactory.makeTextOutput(
         `This is an example of using output to display a message
-        to the user before any commands are run.`
+to the user before any commands are run.`
       )
     );
     const emulatorState = defaultState.setOutputs(newOutputs);
