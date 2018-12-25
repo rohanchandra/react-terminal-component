@@ -5,6 +5,10 @@ import PromptSymbol from 'PromptSymbol';
 import PropTypes from 'prop-types';
 
 class CommandInput extends Component {
+  focus() {
+    this.input.focus();
+  }
+
   scrollIntoView() {
     this.input.scrollIntoView();
   }

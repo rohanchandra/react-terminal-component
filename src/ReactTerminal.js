@@ -13,8 +13,6 @@ class Terminal extends Component {
       emulatorState,
       inputStr
     };
-    this.onInputChange = this.onInputChange.bind(this);
-    this.onStateChange = this.onStateChange.bind(this);
   }
 
   _init(props) {
@@ -47,25 +45,26 @@ class Terminal extends Component {
     return !isOutputEqual || !isInputStrEqual;
   }
 
-  onInputChange(inputStr) {
+  _onInputChange = (inputStr) => {
     this.setState({inputStr});
   }
 
-  onStateChange(emulatorState) {
+  _onStateChange = (emulatorState) => {
     this.setState({emulatorState, inputStr: ''});
   }
 
   render() {
-    const {acceptInput, theme, promptSymbol, outputRenderers, terminalId} = this.props;
+    const {acceptInput, clickToFocus, theme, promptSymbol, outputRenderers, terminalId} = this.props;
     const {emulatorState, inputStr} = this.state;
 
     return (
       <ReactTerminalStateless
         acceptInput={acceptInput}
+        clickToFocus={clickToFocus}
         emulatorState={emulatorState}
         inputStr={inputStr}
-        onInputChange={this.onInputChange}
-        onStateChange={this.onStateChange}
+        onInputChange={this._onInputChange}
+        onStateChange={this._onStateChange}
         outputRenderers={outputRenderers}
         promptSymbol={promptSymbol}
         terminalId={terminalId}
@@ -77,6 +76,7 @@ class Terminal extends Component {
 
 Terminal.propTypes = {
   acceptInput: PropTypes.bool,
+  clickToFocus: PropTypes.bool,
   inputStr: PropTypes.string,
   terminalId: PropTypes.string,
   theme: PropTypes.object,
@@ -87,6 +87,7 @@ Terminal.propTypes = {
 
 Terminal.defaultProps = {
   acceptInput: true,
+  clickToFocus: false,
   emulatorState: EmulatorState.createEmpty(),
   theme: defaultTheme,
   promptSymbol: '$',
