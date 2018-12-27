@@ -22,5 +22,8 @@ storiesOf('ReactTerminal', module)
     const emulatorState = defaultState.setOutputs(newOutputs);
 
     return <ReactTerminal emulatorState={emulatorState} acceptInput={false} />;
-  });
+  })
+  .add('with autoFocus=false', () => (
+    <ReactTerminal autoFocus={false} />
+  ));
 
