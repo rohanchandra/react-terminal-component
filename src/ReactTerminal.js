@@ -41,10 +41,12 @@ class Terminal extends Component {
   }
 
   render() {
-    let {emulatorState, inputStr, ...otherProps} = this.props;
+    // eslint-disable-next-line no-unused-vars
+    const {emulatorState: removedEmulatorState, inputStr: removedInputStr, ...otherProps} = this.props;
+    const {emulatorState, inputStr} = this.state;
 
-    ({emulatorState, inputStr} = this.state);
-
+    // We're using the spread operator to pass along all props to the child componentm
+    // except for emulatorState and inputStr which must come from the state.
     return (
       <ReactTerminalStateless
         {...otherProps}
