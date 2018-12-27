@@ -48,6 +48,8 @@ class App extends Component {
 
 ### Props
 
+All of these props apply to both `ReactTerminal` and `ReactTerminalStateless`.
+
 #### emulatorState
 
 * [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.js)
@@ -128,6 +130,13 @@ The `acceptInput` prop is a boolean value, defaulting to true. When disabled, th
 * [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal.js)
 * [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal&selectedStory=with%20acceptInput%3Dfalse)
 
+#### autoFocus
+
+The `autoFocus` prop defaults to true and causes the input field to gain focus when the component is first mounted and whenever the component is updated i.e. if props change. This prop can work in conjunction with `clickToFocus`.
+
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal.js)
+* [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal&selectedStory=with%20autoFocus%3Dfalse)
+
 #### clickToFocus
 
 The `clickToFocus` prop is a boolean value, defaulting to false. When enabled, clicking anywhere within the terminal will shift focus to the input field.
@@ -139,9 +148,7 @@ The `clickToFocus` prop is a boolean value, defaulting to false. When enabled, c
 
 The `ReactTerminal` component allows the initial values of `emulatorState` and `inputStr` to be specified, but thereafter the component handles the state internally. In some cases you may need to manage the state externally from the `react-terminal-component` module. 
 
-You can use `ReactTerminalStateless` to control the state of `emulatorState` and `inputStr`, but you must also supply the `onInputChange` and `onStateChange` props.
-
-All of the props documented above apply to both `ReactTerminal` and `ReactTerminalStateless`.
+You can use `ReactTerminalStateless` to control the state of `emulatorState` and `inputStr`, but you must also supply the `onInputChange` and `onStateChange` props. You'll need to use `javascript-terminal` in order to modify the `emulatorState`.
 
 This is a simple component which handles the terminal state. You could adapt this idea to make the state be handled by Redux and to modify the state asynchronously, not in direct response to a command within the terminal.
 

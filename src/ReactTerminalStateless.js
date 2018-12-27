@@ -22,20 +22,21 @@ class TerminalStateless extends Component {
     this.dragging = false;
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (!this.props || !this.props.emulatorState || !nextProps || !nextProps.emulatorState) {
-      return true;
+  focus() {
+    if (this.inputRef) {
+      this.inputRef.focus();
     }
-    const isOutputEqual = this.props.emulatorState.getOutputs() ===
-      nextProps.emulatorState.getOutputs();
-    const isInputStrEqual = this.props.inputStr === nextProps.inputStr;
-
-    return !isOutputEqual || !isInputStrEqual;
   }
 
   componentDidUpdate() {
+    const {autoFocus} = this.props;
+
     if (this.inputRef) {
       this.inputRef.scrollIntoView();
+    }
+
+    if (autoFocus) {
+      this.focus();
     }
   }
 
@@ -105,7 +106,7 @@ class TerminalStateless extends Component {
 
   render() {
     const {
-      acceptInput, clickToFocus, emulatorState, inputStr, theme, promptSymbol, outputRenderers, terminalId
+      acceptInput, autoFocus, clickToFocus, emulatorState, inputStr, theme, promptSymbol, outputRenderers, terminalId
     } = this.props;
     let inputControl, focusProps;
 
@@ -125,6 +126,7 @@ class TerminalStateless extends Component {
       inputControl = (
         <CommandInput
           ref={(ref) => { this.inputRef = ref; }}
+          autoFocus={autoFocus}
           promptSymbol={promptSymbol}
           value={inputStr}
           onSubmit={this._submitInput}
@@ -153,21 +155,28 @@ class TerminalStateless extends Component {
   }
 };
 
-TerminalStateless.propTypes = {
+// These props are shared with ReactTerminal.
+TerminalStateless.commonPropTypes = {
   acceptInput: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   clickToFocus: PropTypes.bool,
-  emulatorState: PropTypes.object.isRequired,
-  inputStr: PropTypes.string.isRequired,
-  onInputChange: PropTypes.func.isRequired,
-  onStateChange: PropTypes.func.isRequired,
   outputRenderers: PropTypes.object,
   promptSymbol: PropTypes.string,
   terminalId: PropTypes.string,
   theme: PropTypes.object
 };
 
+TerminalStateless.propTypes = {
+  ...TerminalStateless.commonPropTypes,
+  emulatorState: PropTypes.object.isRequired,
+  inputStr: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onStateChange: PropTypes.func.isRequired
+};
+
 TerminalStateless.defaultProps = {
   acceptInput: true,
+  autoFocus: true,
   clickToFocus: false,
   emulatorState: EmulatorState.createEmpty(),
   inputStr: '',
