@@ -13,7 +13,7 @@ storiesOf('ReactTerminal - Themes', module)
     <ReactTerminal {...demoThemeProps} />
   ))
   .add('with custom height and width', () => (
-    <ReactTerminal theme={{ height: '100vh', width: '50%' }} {...demoThemeProps} />
+    <ReactTerminal theme={{ ...ReactThemes.default, height: '25vh', width: '50%' }} {...demoThemeProps} />
   ))
   .add('with Magpie theme', () => (
     <ReactTerminal theme={ReactThemes.magpie} {...demoThemeProps} />
