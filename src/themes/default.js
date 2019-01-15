@@ -10,5 +10,6 @@ export default {
   ...defaultColors,
   fontSize: '1.1rem',
   spacing: '1%',
-  fontFamily: 'monospace'
+  fontFamily: 'monospace',
+  height: '50vh'
 };
