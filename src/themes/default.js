@@ -11,6 +11,6 @@ export default {
   fontSize: '1.1rem',
   spacing: '1%',
   fontFamily: 'monospace',
-  height: '50vh',
-  width: '100vw'
+  height: '50%',
+  width: '100%'
 };
