@@ -10,29 +10,29 @@ const demoThemeProps = {
 
 storiesOf('ReactTerminal - Themes', module)
   .add('with default theme', () => (
-    <ReactTerminal {...demoThemeProps}/>
+    <ReactTerminal {...demoThemeProps} />
   ))
-  .add('with modified dimensions', () => (
-    <ReactTerminal theme={{height: '100%'}} {...demoThemeProps}/>
+  .add('with custom height and width', () => (
+    <ReactTerminal theme={{ height: '100vh', width: '50%' }} {...demoThemeProps} />
   ))
   .add('with Magpie theme', () => (
-    <ReactTerminal theme={ReactThemes.magpie} {...demoThemeProps}/>
+    <ReactTerminal theme={ReactThemes.magpie} {...demoThemeProps} />
   ))
   .add('with Ember theme', () => (
-    <ReactTerminal theme={ReactThemes.ember} {...demoThemeProps}/>
+    <ReactTerminal theme={ReactThemes.ember} {...demoThemeProps} />
   ))
   .add('with Dye theme', () => (
-    <ReactTerminal theme={ReactThemes.dye} {...demoThemeProps}/>
+    <ReactTerminal theme={ReactThemes.dye} {...demoThemeProps} />
   ))
   .add('with Forest theme', () => (
-    <ReactTerminal theme={ReactThemes.forest} {...demoThemeProps}/>
+    <ReactTerminal theme={ReactThemes.forest} {...demoThemeProps} />
   ))
   .add('with Hacker theme', () => (
-    <ReactTerminal theme={ReactThemes.hacker} {...demoThemeProps}/>
+    <ReactTerminal theme={ReactThemes.hacker} {...demoThemeProps} />
   ))
   .add('with Sea theme', () => (
-    <ReactTerminal theme={ReactThemes.sea} {...demoThemeProps}/>
+    <ReactTerminal theme={ReactThemes.sea} {...demoThemeProps} />
   ))
   .add('with Light theme', () => (
-    <ReactTerminal theme={ReactThemes.light} {...demoThemeProps}/>
+    <ReactTerminal theme={ReactThemes.light} {...demoThemeProps} />
   ));
