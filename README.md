@@ -99,7 +99,9 @@ Alternatively, you can specify your own theme with an object like this:
   errorOutputColor: '#ff89bd',
   fontSize: '1.1rem',
   spacing: '1%',
-  fontFamily: 'monospace'
+  fontFamily: 'monospace',
+  width: '100%',
+  height: '50vh'
 }}/>
 ```
 
