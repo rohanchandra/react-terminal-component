@@ -10,7 +10,7 @@ class CommandInput extends Component {
   }
 
   scrollIntoView() {
-    this.input.scrollIntoView(false);
+    this.input.scrollIntoView();
   }
 
   render() {
