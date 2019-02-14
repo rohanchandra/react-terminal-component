@@ -9,9 +9,10 @@
     "test": "cross-env NODE_PATH=./src mocha --compilers js:@babel/register --colors './test/**/*.spec.js'",
     "test:min": "yarn run test --reporter min",
     "test:coverage": "nyc yarn run test",
-    "storybook": "start-storybook -p 9001 -c .storybook NODE_PATH=./src",
+    "storybook": "start-storybook -p 6006",
     "artifact:test-coverage": "nyc --reporter=html yarn run test",
-    "artifact:storybook": "build-storybook -c .storybook -o .storybook_output"
+    "artifact:storybook": "build-storybook -c .storybook -o .storybook_output",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -59,7 +60,10 @@
     "react-dom": "^16.8.1",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
-    "yargs": "^13.1.0"
+    "yargs": "^13.1.0",
+    "@storybook/addon-actions": "^4.1.11",
+    "@storybook/addon-links": "^4.1.11",
+    "@storybook/addons": "^4.1.11"
   },
   "dependencies": {
     "prop-types": "^15.7.2",

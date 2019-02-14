@@ -14,7 +14,7 @@ class CommandInput extends Component {
   }
 
   render() {
-    const {autoFocus, promptSymbol, value, onChange, onSubmit, onKeyDown} = this.props;
+    const { autoFocus, promptSymbol, value, onChange, onSubmit, onKeyDown } = this.props;
 
     return (
       <div className={'terminalInput'}>
