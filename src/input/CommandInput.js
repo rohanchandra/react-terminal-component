@@ -9,10 +9,6 @@ class CommandInput extends Component {
     this.input.focus();
   }
 
-  scrollIntoView() {
-    this.input.scrollIntoView(false);
-  }
-
   render() {
     const { autoFocus, promptSymbol, value, onChange, onSubmit, onKeyDown } = this.props;
 
