@@ -18,6 +18,7 @@ class TerminalStateless extends Component {
     this.historyKeyboardPlugin = new HistoryKeyboardPlugin(emulatorState);
     this.plugins = [this.historyKeyboardPlugin];
     this.inputRef = null;
+    this.containerRef = null;
     this.dragStart = {};
     this.dragging = false;
   }
@@ -28,12 +29,14 @@ class TerminalStateless extends Component {
     }
   }
 
+  scrollOutput() {
+    this.containerRef.scrollTop = this.containerRef.scrollHeight;
+  }
+
   componentDidUpdate() {
     const {autoFocus} = this.props;
-
-    if (this.inputRef) {
-      this.inputRef.scrollIntoView();
-    }
+    
+    this.scrollOutput();
 
     if (autoFocus) {
       this.focus();
@@ -81,7 +84,7 @@ class TerminalStateless extends Component {
 
   _onClick = () => {
     if (this.inputRef && !this.dragging) {
-      this.inputRef.scrollIntoView();
+      this.scrollOutput();
       this.inputRef.focus();
     }
   };
@@ -140,6 +143,7 @@ class TerminalStateless extends Component {
       <ThemeProvider theme={theme}>
         <TerminalContainer
           className={'terminalContainer'}
+          ref={(ref) => { this.containerRef = ref; }}
           {...focusProps}
         >
           <OutputList
