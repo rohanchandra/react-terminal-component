@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import defaultTheme from 'themes/default';
 
 const StyledInput = styled.input`
   flex: 1;
@@ -12,9 +11,5 @@ const StyledInput = styled.input`
   font-family: monospace;
   padding: 0;
 `;
-
-StyledInput.defaultProps = {
-  theme: defaultTheme
-};
 
 export default StyledInput;

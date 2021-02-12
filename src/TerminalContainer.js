@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import defaultTheme from 'themes/default';
 
 const TerminalContainer = styled.div`
   & > :last-child {
@@ -15,9 +14,5 @@ const TerminalContainer = styled.div`
   font-family: monospace;
   font-size: ${({ theme }) => theme.fontSize};
 `;
-
-TerminalContainer.defaultProps = {
-  theme: defaultTheme
-};
 
 export default TerminalContainer;

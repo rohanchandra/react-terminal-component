@@ -40,7 +40,12 @@ const config = {
     modules: [path.resolve('./node_modules'), path.resolve('./src')],
     extensions: ['.json', '.js']
   },
-  plugins: plugins
+  plugins: plugins,
+  externals: {
+    react: 'react',
+    'react-dom': 'react-dom',
+    'styled-components': 'styled-components'
+  }
 };
 
 module.exports = config;
