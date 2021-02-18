@@ -52,7 +52,7 @@ All of these props apply to both `ReactTerminal` and `ReactTerminalStateless`.
 
 #### emulatorState
 
-* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.js)
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.stories.js)
 * [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal%20-%20Emulator%20State)
 
 Emulator state is created using the [JavaScript terminal emulator library](https://github.com/rohanchandra/javascript-terminal) and contains:
@@ -65,11 +65,11 @@ Emulator state is created using the [JavaScript terminal emulator library](https
 
 The `emulatorState` prop allows you to provide a custom emulator state.
 
-See the [library documentation](https://github.com/rohanchandra/javascript-terminal#emulator-state) for information on creating the emulator state, or view the [code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.js) to get started.
+See the [library documentation](https://github.com/rohanchandra/javascript-terminal#emulator-state) for information on creating the emulator state, or view the [code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_state.stories.js) to get started.
 
 #### theme
 
-* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_themes.js)
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_themes.stories.js)
 * [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal%20-%20Themes)
 
 The `theme` prop accepts an object from `ReactThemes`. The themes current available are:
@@ -107,17 +107,17 @@ Alternatively, you can specify your own theme with an object like this:
 
 #### promptSymbol
 
-* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_prompt.js)
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_prompt.stories.js)
 * [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal%20-%20Prompt%20symbol)
 
 The `promptSymbol` prop accepts a string to be displayed in command headers and the input field.
 
 #### outputRenderers
 
-* [Code example](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_output.js)
+* [Code example](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_output.stories.js)
 * [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal%20-%20OutputRenderer)
 
-The `outputRenderers` prop allows you to create new ways of displaying terminal output. See the [code example](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_output.js), which creates a new type of output (output with a white background).
+The `outputRenderers` prop allows you to create new ways of displaying terminal output. See the [code example](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal_output.stories.js), which creates a new type of output (output with a white background).
 
 The default renderers are accessible in `ReactOutputRenderers`.
 
@@ -129,21 +129,21 @@ import { ReactOutputRenderers } from 'react-terminal-component';
 
 The `acceptInput` prop is a Boolean value, defaulting to true. When disabled, the input field is removed. This may be useful in conjunction with `ReactTerminalStateless` if you're managing state externally and simulating long-running commands.
 
-* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal.js)
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal.stories.js)
 * [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal&selectedStory=with%20acceptInput%3Dfalse)
 
 #### autoFocus
 
 The `autoFocus` prop defaults to true and causes the input field to gain focus when the component is first mounted and whenever the component is updated i.e. if props change. This prop can work in conjunction with `clickToFocus`.
 
-* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal.js)
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal.stories.js)
 * [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal&selectedStory=with%20autoFocus%3Dfalse)
 
 #### clickToFocus
 
 The `clickToFocus` prop is a Boolean value, defaulting to false. When enabled, clicking anywhere within the terminal will shift focus to the input field.
 
-* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal.js)
+* [Code examples](https://github.com/rohanchandra/react-terminal-component/blob/master/stories/ReactTerminal.stories.js)
 * [Demo](https://rohanchandra.gitlab.io/react-terminal-component/storybook/?selectedKind=ReactTerminal&selectedStory=with%20clickToFocus)
 
 ### Managing state externally
